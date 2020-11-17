@@ -12,25 +12,66 @@ import br.hoteleveris.app.response.BaseResponse;
 public class ComodidadeTest {
 
 	@Autowired
-	private ComodidadeService _service;
-	
+	ComodidadeService service;
+
 	@Test
-	public void inserirComodidade() {
-		ComodidadeRequest comodidade = new ComodidadeRequest();
-		
-		comodidade.setNome("frigobar");
-		
-		BaseResponse base = _service.inserir(comodidade);
-		Assertions.assertEquals(201, base.getStatusCode());
-		Assertions.assertEquals("Comodidade inserida com sucesso...aproveite!", base.getMessage());
-		
-		
+	public void criarComodidade() {
+		ComodidadeRequest request = new ComodidadeRequest();
+		request.setId(2L);
+		request.setNome("Descobrindo Se API Funciona");
+
+		BaseResponse response = service.inserir(request);
+		Assertions.assertEquals(201, response.getStatusCode());
 	}
 	
 	@Test
-	public void obterComodidade() {
-		BaseResponse base = _service.obter(1L);
-		Assertions.assertEquals(200, base.getStatusCode());
-		
+	public void criarComodidadeSemNome() {
+		ComodidadeRequest request = new ComodidadeRequest();
+		request.setId(1L);
+//		request.setNome("Descobrindo Se API Funciona");
+
+		BaseResponse response = service.inserir(request);
+		Assertions.assertEquals(400, response.getStatusCode());
 	}
+	
+	@Test
+	public void criarComodidadeNomeNulo() {
+		ComodidadeRequest request = new ComodidadeRequest();
+		request.setId(2L);
+		request.setNome(null);
+
+		BaseResponse response = service.inserir(request);
+		Assertions.assertEquals(400, response.getStatusCode());
+	}
+	
+	@Test
+	public void criarComodidadeNomeVazio() {
+		ComodidadeRequest request = new ComodidadeRequest();
+		request.setId(2L);
+		request.setNome("");
+
+		BaseResponse response = service.inserir(request);
+		Assertions.assertEquals(400, response.getStatusCode());
+	}
+	
+	@Test
+	public void obterPorId() {
+		BaseResponse response = service.obter(2L);
+		Assertions.assertEquals(200,response.getStatusCode());
+	}
+	
+	@Test
+	public void obterPorIdzero() {
+		BaseResponse response = service.obter(0L);
+		Assertions.assertEquals(400,response.getStatusCode());
+	}
+	
+	@Test
+	public void obterPorIdNaoExistente() {
+		BaseResponse response = service.obter(8855346564l);
+		Assertions.assertEquals(400,response.getStatusCode());
+	}
+	
+	
+	
 }
