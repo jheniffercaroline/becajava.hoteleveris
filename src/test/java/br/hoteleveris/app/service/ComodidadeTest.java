@@ -37,7 +37,7 @@ public class ComodidadeTest {
 	@Test
 	public void criarComodidadeNomeNulo() {
 		ComodidadeRequest request = new ComodidadeRequest();
-		request.setId(2L);
+		request.setId(1L);
 		request.setNome(null);
 
 		BaseResponse response = service.inserir(request);
@@ -47,7 +47,7 @@ public class ComodidadeTest {
 	@Test
 	public void criarComodidadeNomeVazio() {
 		ComodidadeRequest request = new ComodidadeRequest();
-		request.setId(2L);
+		request.setId(1L);
 		request.setNome("");
 
 		BaseResponse response = service.inserir(request);
@@ -56,7 +56,7 @@ public class ComodidadeTest {
 	
 	@Test
 	public void obterPorId() {
-		BaseResponse response = service.obter(2L);
+		BaseResponse response = service.obter(1L);
 		Assertions.assertEquals(200,response.getStatusCode());
 	}
 	
@@ -65,13 +65,5 @@ public class ComodidadeTest {
 		BaseResponse response = service.obter(0L);
 		Assertions.assertEquals(400,response.getStatusCode());
 	}
-	
-	@Test
-	public void obterPorIdNaoExistente() {
-		BaseResponse response = service.obter(8855346564l);
-		Assertions.assertEquals(400,response.getStatusCode());
-	}
-	
-	
 	
 }
