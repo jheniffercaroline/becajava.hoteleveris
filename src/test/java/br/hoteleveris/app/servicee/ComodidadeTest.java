@@ -1,4 +1,4 @@
-package br.hoteleveris.app.service;
+package br.hoteleveris.app.servicee;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -7,12 +7,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import br.hoteleveris.app.request.ComodidadeRequest;
 import br.hoteleveris.app.response.BaseResponse;
+import br.hoteleveris.app.service.imp.ComodidadeServiceImp;
 
 @SpringBootTest
 public class ComodidadeTest {
 
 	@Autowired
-	ComodidadeService service;
+	ComodidadeServiceImp service;
 
 	@Test
 	public void criarComodidade() {

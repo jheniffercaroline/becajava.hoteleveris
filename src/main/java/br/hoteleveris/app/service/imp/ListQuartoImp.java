@@ -1,11 +1,11 @@
-package br.hoteleveris.app.service;
+package br.hoteleveris.app.service.imp;
 
 import java.util.List;
 
 import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.response.QuartoResponse;
 
-public class ListQuartoResponse extends BaseResponse {
+public class ListQuartoImp extends BaseResponse {
 
 	private List<QuartoResponse> quartos;
 

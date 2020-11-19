@@ -13,6 +13,7 @@ import br.hoteleveris.app.request.ComodidadeRequest;
 import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.response.ComodidadeResponse;
 import br.hoteleveris.app.service.ComodidadeService;
+import br.hoteleveris.app.service.imp.ComodidadeServiceImp;
 
 @RestController
 @RequestMapping("/comodidade")
@@ -34,10 +35,11 @@ public class ComodidadeController extends BaseController {
 	@GetMapping(path = "/{id}")
 	public ResponseEntity obter(@PathVariable Long id) {
 		try {
-			ComodidadeResponse response = service.obter(id);
+			BaseResponse response = service.obter(id);
 			return ResponseEntity.status(response.statusCode).body(response);
 		} catch (Exception e) {
 			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
+
 		}
 	}
 }

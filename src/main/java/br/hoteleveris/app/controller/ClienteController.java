@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.hoteleveris.app.request.ClienteRequest;
 import br.hoteleveris.app.response.BaseResponse;
-import br.hoteleveris.app.response.ClienteResponse;
 import br.hoteleveris.app.service.ClienteService;
 
 @RestController
@@ -22,9 +21,9 @@ public class ClienteController extends BaseController {
 	private ClienteService service;
 
 	@PostMapping
-	public ResponseEntity inserir(@RequestBody ClienteRequest clienteRequest) {
+	public ResponseEntity inserir(@RequestBody ClienteRequest request) {
 		try {
-			BaseResponse response = service.inserir(clienteRequest);
+			BaseResponse response = service.inserir(request);
 			return ResponseEntity.status(response.statusCode).body(response);
 		} catch (Exception e) {
 			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
@@ -34,12 +33,13 @@ public class ClienteController extends BaseController {
 	@GetMapping(path = "/{id}")
 	public ResponseEntity obter(@PathVariable Long id) {
 		try {
-			ClienteResponse response = service.obter(id);
+			BaseResponse response = service.obter(id);
 			return ResponseEntity.status(response.statusCode).body(response);
 		} catch (Exception e) {
 			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
 
 		}
+
 	}
 
 }

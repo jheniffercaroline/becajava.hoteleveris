@@ -13,6 +13,7 @@ import br.hoteleveris.app.request.OcupacaoRequest;
 import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.response.OcupacaoResponse;
 import br.hoteleveris.app.service.OcupacaoService;
+import br.hoteleveris.app.service.imp.OcupacaoServiceImp;
 
 @RestController
 @RequestMapping("/ocupacao")
