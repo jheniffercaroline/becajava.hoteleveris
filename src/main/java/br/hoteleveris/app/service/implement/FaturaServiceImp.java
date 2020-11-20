@@ -1,4 +1,4 @@
-package br.hoteleveris.app.service.imp;
+package br.hoteleveris.app.service.implement;
 
 import java.util.List;
 
@@ -20,11 +20,18 @@ public class FaturaServiceImp implements FaturaService {
 	private String hashContaHotel = "123456";
 
 	public BaseResponse transferencia() {
+		
 		BaseResponse response = new BaseResponse();
 
 		RestTemplate restTemplate = new RestTemplate();
 		String uri = "http://localhost:8081/operacoes/transferencia";
+		
 		List<Ocupacao> lista = ocupacaoRepository.findBySituacao("N");
+		if (lista.isEmpty()) {
+			response.statusCode = 400;
+			response.message = "não existe faturas fechada para esse cliente ";
+			return response;
+		}
 
 		for (Ocupacao ocupacao : lista) {
 			double valor = ocupacao.getQuarto().getTipoQuarto().getValor() * ocupacao.getQtdDiarias();
@@ -34,7 +41,7 @@ public class FaturaServiceImp implements FaturaService {
 			transferencia.setHashOrigem(ocupacao.getCliente().getHash());
 			transferencia.setValor(valor);
 
-			restTemplate.postForObject(uri, transferencia, BaseResponse.class);
+			BaseResponse base = restTemplate.postForObject(uri, transferencia, BaseResponse.class);
 
 			ocupacao.setSituacao("P");
 			ocupacaoRepository.save(ocupacao);

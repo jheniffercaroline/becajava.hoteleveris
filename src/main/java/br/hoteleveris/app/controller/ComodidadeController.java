@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.hoteleveris.app.request.ComodidadeRequest;
 import br.hoteleveris.app.response.BaseResponse;
-import br.hoteleveris.app.response.ComodidadeResponse;
 import br.hoteleveris.app.service.ComodidadeService;
-import br.hoteleveris.app.service.imp.ComodidadeServiceImp;
 
 @RestController
 @RequestMapping("/comodidade")
@@ -23,7 +21,7 @@ public class ComodidadeController extends BaseController {
 	private ComodidadeService service;
 
 	@PostMapping
-	public ResponseEntity inserir(@RequestBody ComodidadeRequest comodidadeRequest) {
+	public ResponseEntity<?> inserir(@RequestBody ComodidadeRequest comodidadeRequest) {
 		try {
 			BaseResponse response = service.inserir(comodidadeRequest);
 			return ResponseEntity.status(response.statusCode).body(response);
@@ -33,7 +31,7 @@ public class ComodidadeController extends BaseController {
 	}
 
 	@GetMapping(path = "/{id}")
-	public ResponseEntity obter(@PathVariable Long id) {
+	public ResponseEntity<?> obter(@PathVariable Long id) {
 		try {
 			BaseResponse response = service.obter(id);
 			return ResponseEntity.status(response.statusCode).body(response);

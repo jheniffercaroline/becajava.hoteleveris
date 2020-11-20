@@ -21,7 +21,7 @@ public class ClienteController extends BaseController {
 	private ClienteService service;
 
 	@PostMapping
-	public ResponseEntity inserir(@RequestBody ClienteRequest request) {
+	public ResponseEntity<BaseResponse> inserir(@RequestBody ClienteRequest request) {
 		try {
 			BaseResponse response = service.inserir(request);
 			return ResponseEntity.status(response.statusCode).body(response);
@@ -31,7 +31,7 @@ public class ClienteController extends BaseController {
 	}
 
 	@GetMapping(path = "/{id}")
-	public ResponseEntity obter(@PathVariable Long id) {
+	public ResponseEntity<BaseResponse> obter(@PathVariable Long id) {
 		try {
 			BaseResponse response = service.obter(id);
 			return ResponseEntity.status(response.statusCode).body(response);

@@ -1,4 +1,4 @@
-package br.hoteleveris.app.service.imp;
+package br.hoteleveris.app.service.implement;
 
 import java.util.Optional;
 
@@ -50,7 +50,7 @@ public class ClienteServiceImp implements ClienteService {
 		Optional<Cliente> cliente = _repository.findById(id);
 		ClienteResponse response = new ClienteResponse();
 
-		if (cliente == null) {
+		if (cliente.isEmpty()) {
 			response.message = "Ops, tente novamente e, se certifique que todos os campos estão preenchido corretamente";
 			response.statusCode = 404;
 			return response;

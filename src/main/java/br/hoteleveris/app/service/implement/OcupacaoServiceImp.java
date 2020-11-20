@@ -1,4 +1,4 @@
-package br.hoteleveris.app.service.imp;
+package br.hoteleveris.app.service.implement;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class OcupacaoServiceImp implements OcupacaoService {
 			return base;
 		}
 		if (request.getQtdDiarias() <= 0) {
-			base.message = "Preencha a quantidade de diárias...";
+			base.message = "";
 			return base;
 		}
 		if (request.getSituacao() == "") {

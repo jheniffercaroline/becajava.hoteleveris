@@ -23,7 +23,7 @@ public class TipoQuartoController extends BaseController {
 	private TipoQuartoService service;
 
 	@PostMapping
-	public ResponseEntity inserir(@RequestBody TipoQuartoRequest tipoQuartoRequest) {
+	public ResponseEntity<?> inserir(@RequestBody TipoQuartoRequest tipoQuartoRequest) {
 		try {
 			BaseResponse response = service.inserir(tipoQuartoRequest);
 			return ResponseEntity.status(response.statusCode).body(response);
@@ -33,7 +33,7 @@ public class TipoQuartoController extends BaseController {
 	}
 
 	@GetMapping(path = "/{id}")
-	public ResponseEntity obter(@PathVariable Long id) {
+	public ResponseEntity<?> obter(@PathVariable Long id) {
 		try {
 			TipoQuartoResponse response = service.obter(id);
 			return ResponseEntity.status(response.statusCode).body(response);
@@ -43,7 +43,7 @@ public class TipoQuartoController extends BaseController {
 	}
 
 	@GetMapping(path = "/listar")
-	public ResponseEntity listar() {
+	public ResponseEntity<?> listar() {
 		try {
 			
 			ListTipoQuartoResponse response = service.listar();
